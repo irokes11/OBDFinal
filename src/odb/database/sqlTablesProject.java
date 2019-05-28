@@ -30,7 +30,7 @@ public class sqlTablesProject {
 				.addCharCol("imie", 20);
 
 		degrees = new TableStructure(DEGREES).addIdColumn("ido").addCharCol("wartosc_opisowa", 20)
-				.addFloatColumn("wartosc_numeryczna", 10, 2);
+				.addFloatColumn("wartosc_numeryczna", 20, 2);
 
 		issuingGrades = new TableStructure(GRADING).addIntColumn("idp").addIntColumn("ido")
 				.addIntColumn("idn").addIntColumn("idu").addCharCol("rodzaj_oceny", 1);
@@ -82,46 +82,46 @@ public class sqlTablesProject {
 	}
 
 	private void insertStudents(TableStructure table) throws ClassNotFoundException, SQLException {
-		DataCreator.insertWithCheckExists(students).values(1, "Janek", "Wisniewski");
-		DataCreator.insertWithCheckExists(students).values(2, "Ireneusz", "Seredyn");
-		DataCreator.insertWithCheckExists(students).values(3, "Szymon", "Kulej");
-		DataCreator.insertWithCheckExists(students).values(4, "Ibrahim", "Ahmed");
+		DataCreator.insert(students).values(1, "Janek", "Wisniewski");
+		DataCreator.insert(students).values(2, "Ireneusz", "Seredyn");
+		DataCreator.insert(students).values(3, "Szymon", "Kulej");
+		DataCreator.insert(students).values(4, "Ibrahim", "Ahmed");
 		table.setMinId(1);
 		table.setMaxId(4);
 	}
 
 	private void insertTeachers(TableStructure table) throws ClassNotFoundException, SQLException {
-		DataCreator.insertWithCheckExists(teachers).values(1, "Maria", "Zakrzewska");
-		DataCreator.insertWithCheckExists(teachers).values(2, "Grazyna", "Przytula");
-		DataCreator.insertWithCheckExists(teachers).values(3, "Piotr", "Seredyn");
-		DataCreator.insertWithCheckExists(teachers).values(4, "Adam", "Mickiewicz");
+		DataCreator.insert(teachers).values(1, "Maria", "Zakrzewska");
+		DataCreator.insert(teachers).values(2, "Grazyna", "Przytula");
+		DataCreator.insert(teachers).values(3, "Piotr", "Seredyn");
+		DataCreator.insert(teachers).values(4, "Adam", "Mickiewicz");
 		table.setMinId(1);
 		table.setMaxId(4);
 	}
 
 	private void insertSubjects(TableStructure table) throws ClassNotFoundException, SQLException {
-		DataCreator.insertWithCheckExists(subjects).values(1, "Biologia");
-		DataCreator.insertWithCheckExists(subjects).values(2, "Wychowanie Fizyczne");
-		DataCreator.insertWithCheckExists(subjects).values(3, "Samo Obrona");
-		DataCreator.insertWithCheckExists(subjects).values(4, "Podstawy Islamu");
+		DataCreator.insert(subjects).values(1, "Biologia");
+		DataCreator.insert(subjects).values(2, "Wychowanie Fizyczne");
+		DataCreator.insert(subjects).values(3, "Samo Obrona");
+		DataCreator.insert(subjects).values(4, "Podstawy Islamu");
 		table.setMinId(1);
 		table.setMaxId(4);
 	}
 
 	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
-		int idDegree = 1;
+		int idDegree = 0; //1
 		for (Double degree : Arrays.asList(Double.valueOf(1.5), Double.valueOf(1.75), Double.valueOf(2),
 				Double.valueOf(3), Double.valueOf(4), Double.valueOf(5))) {
-			DataCreator.insertWithCheckExists(degrees).values(idDegree, getDegree(degree), degree);
+			DataCreator.insert(degrees).values(idDegree, getDegree(degree), degree);
 			idDegree++;
 		}
 		table.setMinId(1);
-		table.setMaxId(5);
+		table.setMaxId(6);
 
 	}
 
 	private String getDegree(Double degree) {
-		if (degree == 1.5) {
+		if (degree == 1.5) { 
 			return "jedynka +";
 		}
 		if (degree == 1.75) {

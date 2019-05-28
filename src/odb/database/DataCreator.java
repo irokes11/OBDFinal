@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class DataCreator {
 
-	public static InsertEngine insertWithCheckExists(TableStructure def) {
+	public static InsertEngine insert(TableStructure def) {
 		return new InsertEngine(def, true);
 	}
 
@@ -49,18 +49,18 @@ public class DataCreator {
 				return;
 			}
 
-			StringBuilder insertDML = new StringBuilder();
+			StringBuilder insertSQL = new StringBuilder();
 
-			insertDML.append("INSERT INTO " + def.getTableName() + " (");
-			insertDML.append(colNames);
-			insertDML.append(") VALUES (");
-			insertDML.append(colVals);
-			insertDML.append(")");
+			insertSQL.append("INSERT INTO " + def.getTableName() + " (");
+			insertSQL.append(colNames);
+			insertSQL.append(") VALUES (");
+			insertSQL.append(colVals);
+			insertSQL.append(")");
 
 //			System.out.println(insertDML);
 			DataBaseCon db = DataBaseCon.getInstance();
 			Statement stat = db.getStatement();			
-		    stat.executeUpdate(insertDML.toString());
+		    stat.executeUpdate(insertSQL.toString());
 			return;
 		
 		}
