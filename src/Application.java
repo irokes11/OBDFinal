@@ -47,14 +47,14 @@ public class Application {
 		}
 	}
 
-	private void addGradeToDatabase(int idu, int idn, int ido, int idp, String degree) throws Exception {
-		sqlTablesProject tdp = sqlTablesProject.getInstance();
+	private void addGradeToDB(int idu, int idn, int ido, int idp, String degree) throws Exception {
+		sqlTablesProject stp = sqlTablesProject.getInstance();
 
-		table_foreign_key_constraint_check_or_throw_exception(idu, tdp.getStudents());
-		table_foreign_key_constraint_check_or_throw_exception(idn, tdp.getTeachers());
-		table_foreign_key_constraint_check_or_throw_exception(ido, tdp.getDegrees());
-		table_foreign_key_constraint_check_or_throw_exception(idp, tdp.getSubjects());
-		InsertEngine ie = new DataCreator.InsertEngine(tdp.getIssuingGrades(), false);
+		table_foreign_key_constraint_check_or_throw_exception(idu, stp.getStudents());
+		table_foreign_key_constraint_check_or_throw_exception(idn, stp.getTeachers());
+		table_foreign_key_constraint_check_or_throw_exception(ido, stp.getDegrees());
+		table_foreign_key_constraint_check_or_throw_exception(idp, stp.getSubjects());
+		InsertEngine ie = new DataCreator.InsertEngine(stp.getIssuingGrades(), false);
 System.out.println("Adding grades to the Database");
 		ie.values(idp, ido, idn, idu, degree);
 
@@ -62,8 +62,8 @@ System.out.println("Adding grades to the Database");
 	
 	public void createData() throws ClassNotFoundException, SQLException {
 		System.out.println("Creating an examples. Please wait..");
-		sqlTablesProject tdp = sqlTablesProject.getInstance();
-		tdp.createData(true, true);
+		sqlTablesProject stp = sqlTablesProject.getInstance();
+		stp.createData(true, true);
 	}
 
 	
@@ -93,15 +93,15 @@ System.out.println("Adding grades to the Database");
 	}
 
 	private void run2(String op) throws Exception {
-		sqlTablesProject tdp = sqlTablesProject.getInstance();
+		sqlTablesProject stp = sqlTablesProject.getInstance();
 		if (view.LISTSTUDENTS.equals(op)) {
-			viewTable.showList(tdp.getStudents(), "List of Students: ");
+			viewTable.showList(stp.getStudents(), "List of Students: ");
 		} else if (view.LISTTEACHERS.equals(op)) {
-			viewTable.showList(tdp.getTeachers(), "List of Teachers: ");
+			viewTable.showList(stp.getTeachers(), "List of Teachers: ");
 		} else if (view.LISTDEGREES.equals(op)) {
-			viewTable.showList(tdp.getDegrees(), "List of Grades: ");
+			viewTable.showList(stp.getDegrees(), "List of Grades: ");
 		} else if (view.LISTSUBJECTS.equals(op)) {
-			viewTable.showList(tdp.getSubjects(), "List of classes: ");
+			viewTable.showList(stp.getSubjects(), "List of classes: ");
 		} else if (view.LISTISSUEDGRADES.equals(op)) {
 			viewTable.showListIssuedGrades("List of given grades:");
 		} else if (view.ISSUINGGRADES.equals(op)) {
@@ -124,7 +124,7 @@ System.out.println("Adding grades to the Database");
 		if ("S".equalsIgnoreCase(degree) || "C".equalsIgnoreCase(degree)) {
 			try {
 				System.out.println();				
-				addGradeToDatabase(idu, idn, ido, idp, degree);
+				addGradeToDB(idu, idn, ido, idp, degree);
 				System.out.println("Evaluation mark has been saved in the system");
 			} catch (DBConstraintViolation e) {
 				System.out.println(e.getMessage());

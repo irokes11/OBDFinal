@@ -8,10 +8,10 @@ import java.sql.Statement;
 
 public class DataBaseCon {
 
-	private static final String driverName = "oracle.jdbc.driver.OracleDriver";
-	private static final String url = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
-	private static final String username = "iseredyn";
-	private static final String password = "iseredyn"; 
+	private static final String JDB_DRIVER  = "oracle.jdbc.driver.OracleDriver";
+	private static final String DB_URL  = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
+	private static final String USER = "iseredyn";
+	private static final String PASS  = "iseredyn"; 
 	private Connection connection = null;
 	private static DataBaseCon DataBaseCon;
 
@@ -19,6 +19,10 @@ public class DataBaseCon {
 		init();
 	}
 
+	private void init() throws ClassNotFoundException {
+		Class c = Class.forName(JDB_DRIVER );
+	}
+	
 	public static DataBaseCon getInstance() throws ClassNotFoundException {
 		if (DataBaseCon == null) {
 			DataBaseCon = new DataBaseCon();
@@ -26,12 +30,10 @@ public class DataBaseCon {
 		return DataBaseCon;
 	}
 
-	private void init() throws ClassNotFoundException {
-		Class c = Class.forName(driverName);
-	}
+	
 
 	public void open() throws SQLException {		
-		connection = DriverManager.getConnection(url, username, password);		
+		connection = DriverManager.getConnection(DB_URL , USER, PASS);		
 	}
 
 	public void close() {
