@@ -36,6 +36,8 @@ public class ColumnPattern {
 	
 	public static ColumnPattern createChars(String name, int lenght) {
 		  return new ColumnPattern(name, ColumnType.charsColumn(lenght), false);
+		  
+	  
 	}
 	
 	public static ColumnPattern createFloat(String name) {

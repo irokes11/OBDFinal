@@ -58,5 +58,6 @@ public class ColumnType {
 	public static ColumnType textColumn(int maxLength) { return new ColumnType(Type.TEXT, maxLength); }
 	public static ColumnType charsColumn(int fixedLength) { return new ColumnType(Type.CHAR, fixedLength); }
 	public static ColumnType numericColumn(int length, int precision) { return new ColumnType(Type.NUMERIC, length, precision); }
+	
 
 }

@@ -108,7 +108,7 @@ public class sqlTablesProject {
 		table.setMaxId(4);
 	}
 
-	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
+/*	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
 		int idDegree = 0; //1
 		for (Double degree : Arrays.asList(Double.valueOf(1.5), Double.valueOf(1.75), Double.valueOf(2),
 				Double.valueOf(3), Double.valueOf(4), Double.valueOf(5))) {
@@ -118,7 +118,22 @@ public class sqlTablesProject {
 		table.setMinId(1);
 		table.setMaxId(6);
 
+	}*/
+	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
+		//String sql1 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES (1,'jedynka',1)";
+		DataCreator.insert(degrees).values(1,"jedynka",1);
+	//	DataCreator.insert(degrees).values(2,"jeden +",1);
+		DataCreator.insert(degrees).values(3,"dwa",2);
+	//	DataCreator.insert(degrees).values(4,"dwa +",2.5);
+		DataCreator.insert(degrees).values(5,"trzy",3);
+	//	DataCreator.insert(degrees).values(6,"trzy +",3.5);
+		DataCreator.insert(degrees).values(7,"cztery",4);
+	//  DataCreator.insert(degrees).values(8,"cztery +",4.5);
+		DataCreator.insert(degrees).values(9,"piec",5);
+	//	DataCreator.insert(degrees).values(10,"piec +",5.5);
+		DataCreator.insert(degrees).values(11,"szesc",6);
 	}
+
 
 	private String getDegree(Double degree) {
 		if (degree == 1.5) { 

@@ -14,7 +14,9 @@ public class DataBaseCon {
 	private static final String PASS  = "iseredyn"; 
 	private Connection connection = null;
 	private static DataBaseCon DataBaseCon;
-
+	//String sql1 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES (1,'jedynka',1)";
+	
+	
 	private DataBaseCon() throws ClassNotFoundException {
 		init();
 	}
@@ -33,7 +35,11 @@ public class DataBaseCon {
 	
 
 	public void open() throws SQLException {		
-		connection = DriverManager.getConnection(DB_URL , USER, PASS);		
+		connection = DriverManager.getConnection(DB_URL , USER, PASS);
+	//	System.out.println("AutoCommit: "+connection.getAutoCommit()+ " "+connection.hashCode());
+	//	Statement polecenie = connection.createStatement();
+		//ResultSet rs = polecenie.executeQuery(sql1);
+	//	System.out.println("execute "+polecenie.executeUpdate(sql1));
 	}
 
 	public void close() {

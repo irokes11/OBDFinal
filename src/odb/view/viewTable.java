@@ -81,7 +81,7 @@ public class viewTable {
 		query.append(" INNER JOIN NAUCZYCIEL N ON (N.IDN = OC.IDN)");
 		query.append(" INNER JOIN OCENA O ON (O.IDO = OC.IDO)");
 		query.append(" INNER JOIN PRZEDMIOT P ON (P.IDP = OC.IDP)");
-//            System.out.println("showListIssuedGrades::q="+query.toString());  
+ 
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(disp("STUDENT", 51));
