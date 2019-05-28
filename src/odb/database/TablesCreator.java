@@ -48,7 +48,7 @@ public class TablesCreator {
 		sb.append(table.getTableName());
 		sb.append("(");
 		boolean isFirst = true;
-		for(ColumnDefinition col : table.getColumns()) {
+		for(ColumnPattern col : table.getColumns()) {
 			sb.append("\n");
 			if (!isFirst) {
 				sb.append(", ");

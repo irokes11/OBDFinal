@@ -28,7 +28,7 @@ public class DataCreator {
 			StringBuilder colVals = new StringBuilder();
 			String valId = "";
 			String colNameId = "";
-			for (ColumnDefinition col : def.getColumns()) {
+			for (ColumnPattern col : def.getColumns()) {
 				if (colIndex > 0) {
 					colNames.append(", ");
 					colVals.append(", ");
@@ -51,9 +51,9 @@ public class DataCreator {
 
 			StringBuilder insertDML = new StringBuilder();
 
-			insertDML.append("insert into " + def.getTableName() + " (");
+			insertDML.append("INSERT INTO " + def.getTableName() + " (");
 			insertDML.append(colNames);
-			insertDML.append(") values (");
+			insertDML.append(") VALUES (");
 			insertDML.append(colVals);
 			insertDML.append(")");
 

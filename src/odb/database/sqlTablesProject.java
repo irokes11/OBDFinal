@@ -6,11 +6,11 @@ import java.util.stream.IntStream;
 
 public class sqlTablesProject {
 
-	public static final String STUDENTS_TABLE = "Uczen";
-	public static final String DEGREES_TABLE = "Ocena";
-	public static final String TEACHER_TABLE = "Nauczyciel";
-	public static final String SUBJECT_TABLE = "Przedmiot";
-	public static final String GRADING_TABLE = "Ocenianie";
+	public static final String STUDENTS = "Uczen";
+	public static final String DEGREES = "Ocena";
+	public static final String TEACHER = "Nauczyciel";
+	public static final String SUBJECT = "Przedmiot";
+	public static final String GRADING = "Ocenianie";
 
 	private TableStructure subjects;
 	private TableStructure teachers;
@@ -21,19 +21,19 @@ public class sqlTablesProject {
 	private static sqlTablesProject instance = null;
 
 	private sqlTablesProject() {
-		subjects = new TableStructure(SUBJECT_TABLE).addIdColumn("idp").addCharColumn("nazwa", 20);
+		subjects = new TableStructure(SUBJECT).addIdColumn("idp").addCharCol("nazwa", 20);
 
-		teachers = new TableStructure(TEACHER_TABLE).addIdColumn("idn").addCharColumn("nazwisko", 30)
-				.addCharColumn("imie", 20);
+		teachers = new TableStructure(TEACHER).addIdColumn("idn").addCharCol("nazwisko", 30)
+				.addCharCol("imie", 20);
 
-		students = new TableStructure(STUDENTS_TABLE).addIdColumn("idu").addCharColumn("nazwisko", 30)
-				.addCharColumn("imie", 20);
+		students = new TableStructure(STUDENTS).addIdColumn("idu").addCharCol("nazwisko", 30)
+				.addCharCol("imie", 20);
 
-		degrees = new TableStructure(DEGREES_TABLE).addIdColumn("ido").addCharColumn("wartosc_opisowa", 20)
+		degrees = new TableStructure(DEGREES).addIdColumn("ido").addCharCol("wartosc_opisowa", 20)
 				.addFloatColumn("wartosc_numeryczna", 10, 2);
 
-		issuingGrades = new TableStructure(GRADING_TABLE).addIntColumn("idp").addIntColumn("ido")
-				.addIntColumn("idn").addIntColumn("idu").addCharColumn("rodzaj_oceny", 1);
+		issuingGrades = new TableStructure(GRADING).addIntColumn("idp").addIntColumn("ido")
+				.addIntColumn("idn").addIntColumn("idu").addCharCol("rodzaj_oceny", 1);
 
 	}
 
@@ -66,16 +66,16 @@ public class sqlTablesProject {
 
 	public void insertData(TableStructure tableDef) throws ClassNotFoundException, SQLException {
 		switch (tableDef.getTableName()) {
-		case STUDENTS_TABLE:
+		case STUDENTS:
 			insertStudents(tableDef);
 			break;
-		case TEACHER_TABLE:
+		case TEACHER:
 			insertTeachers(tableDef);
 			break;
-		case SUBJECT_TABLE:
+		case SUBJECT:
 			insertSubjects(tableDef);
 			break;
-		case DEGREES_TABLE:
+		case DEGREES:
 			insertDegrees(tableDef);
 			break;
 		}
