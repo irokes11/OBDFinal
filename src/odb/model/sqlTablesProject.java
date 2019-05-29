@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class sqlTablesProject {
 
 	private static sqlTablesProject instance = null;
 
-	private sqlTablesProject() {
+	private sqlTablesProject() {   // Allocating proper items into the columns in sequence
 		subjects = new TableStructure(SUBJECT).addIdColumn("idp").addCharCol("nazwa", 20);
 
 		teachers = new TableStructure(TEACHER).addIdColumn("idn").addCharCol("nazwisko", 30)
@@ -37,7 +37,7 @@ public class sqlTablesProject {
 
 	}
 
-	public static sqlTablesProject getInstance() {
+	public static sqlTablesProject Instance() {
 		if (instance == null) {
 			instance = new sqlTablesProject();
 		}
@@ -82,56 +82,46 @@ public class sqlTablesProject {
 	}
 
 	private void insertStudents(TableStructure table) throws ClassNotFoundException, SQLException {
-		DataCreator.insert(students).values(1, "Janek", "Wisniewski");
-		DataCreator.insert(students).values(2, "Ireneusz", "Seredyn");
-		DataCreator.insert(students).values(3, "Szymon", "Kulej");
-		DataCreator.insert(students).values(4, "Ibrahim", "Ahmed");
+		Data.insert(students).values(1, "Janek", "Wisniewski");
+		Data.insert(students).values(2, "Ireneusz", "Seredyn");
+		Data.insert(students).values(3, "Szymon", "Kulej");
+		Data.insert(students).values(4, "Ibrahim", "Ahmed");
 		table.setMinId(1);
 		table.setMaxId(4);
 	}
 
 	private void insertTeachers(TableStructure table) throws ClassNotFoundException, SQLException {
-		DataCreator.insert(teachers).values(1, "Maria", "Zakrzewska");
-		DataCreator.insert(teachers).values(2, "Grazyna", "Przytula");
-		DataCreator.insert(teachers).values(3, "Piotr", "Seredyn");
-		DataCreator.insert(teachers).values(4, "Adam", "Mickiewicz");
+		Data.insert(teachers).values(1, "Maria", "Zakrzewska");
+		Data.insert(teachers).values(2, "Grazyna", "Przytula");
+		Data.insert(teachers).values(3, "Piotr", "Seredyn");
+		Data.insert(teachers).values(4, "Adam", "Mickiewicz");
 		table.setMinId(1);
 		table.setMaxId(4);
 	}
 
 	private void insertSubjects(TableStructure table) throws ClassNotFoundException, SQLException {
-		DataCreator.insert(subjects).values(1, "Biologia");
-		DataCreator.insert(subjects).values(2, "Wychowanie Fizyczne");
-		DataCreator.insert(subjects).values(3, "Samo Obrona");
-		DataCreator.insert(subjects).values(4, "Podstawy Islamu");
+		Data.insert(subjects).values(1, "Biologia");
+		Data.insert(subjects).values(2, "Wychowanie Fizyczne");
+		Data.insert(subjects).values(3, "Samo Obrona");
+		Data.insert(subjects).values(4, "Podstawy Islamu");
 		table.setMinId(1);
 		table.setMaxId(4);
 	}
 
-/*	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
-		int idDegree = 0; //1
-		for (Double degree : Arrays.asList(Double.valueOf(1.5), Double.valueOf(1.75), Double.valueOf(2),
-				Double.valueOf(3), Double.valueOf(4), Double.valueOf(5))) {
-			DataCreator.insert(degrees).values(idDegree, getDegree(degree), degree);
-			idDegree++;
-		}
-		table.setMinId(1);
-		table.setMaxId(6);
 
-	}*/
 	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
 		//String sql1 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES (1,'jedynka',1)";
-		DataCreator.insert(degrees).values(1,"jedynka",1);
-	//	DataCreator.insert(degrees).values(2,"jeden +",1);
-		DataCreator.insert(degrees).values(3,"dwa",2);
-	//	DataCreator.insert(degrees).values(4,"dwa +",2.5);
-		DataCreator.insert(degrees).values(5,"trzy",3);
-	//	DataCreator.insert(degrees).values(6,"trzy +",3.5);
-		DataCreator.insert(degrees).values(7,"cztery",4);
-	//  DataCreator.insert(degrees).values(8,"cztery +",4.5);
-		DataCreator.insert(degrees).values(9,"piec",5);
-	//	DataCreator.insert(degrees).values(10,"piec +",5.5);
-		DataCreator.insert(degrees).values(11,"szesc",6);
+		Data.insert(degrees).values(1,"jedynka",1);
+	//	Data.insert(degrees).values(2,"jeden +",1,5);
+		Data.insert(degrees).values(3,"dwa",2);
+	//	Data.insert(degrees).values(4,"dwa +",2.5);
+		Data.insert(degrees).values(5,"trzy",3);
+	//	Data.insert(degrees).values(6,"trzy +",3.5);
+		Data.insert(degrees).values(7,"cztery",4);
+	//  Data.insert(degrees).values(8,"cztery +",4.5);
+		Data.insert(degrees).values(9,"piec",5);
+	//	Data.insert(degrees).values(10,"piec +",5.5);
+		Data.insert(degrees).values(11,"szesc",6);
 	}
 
 

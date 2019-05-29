@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +36,7 @@ public class TablesCreator {
 	}
 
 	private boolean tableExists(String tableName) throws SQLException, ClassNotFoundException {
-		return DataBaseCon.simpleQuery("user_tables", "table_name=upper('" + tableName + "')").anyRowExists();
+		return DataBaseCon.Query("user_tables", "table_name=upper('" + tableName + "')").anyRowExists();
 	}
 
 	private void createTable(TableStructure table) throws SQLException, ClassNotFoundException {

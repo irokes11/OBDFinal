@@ -1,9 +1,8 @@
-package odb.database;
+package odb.model;
 
 public class ColumnPattern {
 	
 	private boolean isId;
-
 	private String columnName;
 	private ColumnType columnType;	
 	private boolean isNullable = false;

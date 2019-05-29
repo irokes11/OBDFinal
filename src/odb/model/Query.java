@@ -1,16 +1,16 @@
-package odb.database;
+package odb.model;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SimpleQuery {
+public class Query {
 
 	private String tableName;
 	private String where;
 
-	public SimpleQuery(String tableName, String where) {
+	public Query(String tableName, String where) {
 		this.tableName = tableName;
 		this.where = where;
 	}

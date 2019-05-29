@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 import java.util.function.Function;
 

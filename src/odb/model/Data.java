@@ -1,10 +1,10 @@
-package odb.database;
+package odb.model;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
 
-public class DataCreator {
+public class Data {
 
 	public static InsertEngine insert(TableStructure def) {
 		return new InsertEngine(def, true);
@@ -67,7 +67,7 @@ public class DataCreator {
 
 		private boolean idExists(String tableName, String colNameId, String val) throws ClassNotFoundException, SQLException {
 			String where = colNameId + " = " + val;
-			SimpleQuery sq = new SimpleQuery(tableName, where);
+			Query sq = new Query(tableName, where);
 			return sq.anyRowExists();
 		}
 

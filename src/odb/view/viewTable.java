@@ -6,9 +6,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import odb.database.DataBaseCon;
-import odb.database.TableStructure;
-import odb.database.Type;
+import odb.model.DataBaseCon;
+import odb.model.TableStructure;
+import odb.model.Type;
 
 public class viewTable {
 
@@ -22,9 +22,9 @@ public class viewTable {
 		ResultSet rs = statement.executeQuery(query);
 		try {
 			while (rs.next()) {
-				System.out.print("ID=" + padLeft(rs.getString(1), 5) + " >>> ");
+				System.out.print("ID: " + move(rs.getString(1), 5) + " ->  ");
 				for (int i = 2; i <= table.getColumns().size(); i++) {
-					System.out.print(padLeft(rs.getString(i), orderedColumnLengthList.get(i - 2)) + " | ");
+					System.out.print(move(rs.getString(i), orderedColumnLengthList.get(i - 2)) + " | ");
 				}
 				System.out.println();
 			}
@@ -34,7 +34,7 @@ public class viewTable {
 
 	}
 
-	public static String padLeft(String s, int n) {
+	public static String move(String s, int n) {
 		if (n == 0) {
 			return String.format("%1$10s", s);
 		} else {
@@ -107,7 +107,7 @@ public class viewTable {
 	}
 
 	private static String disp(String s, int spaces) {
-		return padLeft(s, spaces) + " | ";
+		return move(s, spaces) + " | ";
 	}
 
 	private static String make(String alias, String asFieldName, String... fields) {

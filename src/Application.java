@@ -2,15 +2,15 @@ import java.sql.SQLException;
 import java.sql.SQLRecoverableException;
 import java.util.InputMismatchException;
 
-import odb.database.DataBaseCon;
-import odb.database.DBConstraintViolation;
-import odb.database.DataCreator;
-import odb.database.DataCreator.InsertEngine;
 import odb.view.viewTable;
+import odb.model.DBConstraintViolation;
+import odb.model.Data;
+import odb.model.DataBaseCon;
+import odb.model.Query;
+import odb.model.TableStructure;
+import odb.model.sqlTablesProject;
+import odb.model.Data.InsertEngine;
 import odb.view.view;
-import odb.database.SimpleQuery;
-import odb.database.TableStructure;
-import odb.database.sqlTablesProject;
 
 public class Application {
 
@@ -48,13 +48,13 @@ public class Application {
 	}
 
 	private void addGradeToDB(int idu, int idn, int ido, int idp, String degree) throws Exception {
-		sqlTablesProject stp = sqlTablesProject.getInstance();
+		sqlTablesProject stp = sqlTablesProject.Instance();
 
 		table_foreign_key_constraint_check_or_throw_exception(idu, stp.getStudents());
 		table_foreign_key_constraint_check_or_throw_exception(idn, stp.getTeachers());
 		table_foreign_key_constraint_check_or_throw_exception(ido, stp.getDegrees());
 		table_foreign_key_constraint_check_or_throw_exception(idp, stp.getSubjects());
-		InsertEngine ie = new DataCreator.InsertEngine(stp.getIssuingGrades(), false);
+		InsertEngine ie = new Data.InsertEngine(stp.getIssuingGrades(), false);
 System.out.println("Adding grades to the Database");
 		ie.values(idp, ido, idn, idu, degree);
 
@@ -62,7 +62,7 @@ System.out.println("Adding grades to the Database");
 	
 	public void createData() throws ClassNotFoundException, SQLException {
 		System.out.println("Creating an examples. Please wait..");
-		sqlTablesProject stp = sqlTablesProject.getInstance();
+		sqlTablesProject stp = sqlTablesProject.Instance();
 		stp.createData(true, true);
 	}
 
@@ -93,15 +93,15 @@ System.out.println("Adding grades to the Database");
 	}
 
 	private void run2(String op) throws Exception {
-		sqlTablesProject stp = sqlTablesProject.getInstance();
+		sqlTablesProject stp = sqlTablesProject.Instance();
 		if (view.LISTSTUDENTS.equals(op)) {
-			viewTable.showList(stp.getStudents(), "List of Students: ");
+			viewTable.showList(stp.getStudents(), "Students: ");
 		} else if (view.LISTTEACHERS.equals(op)) {
-			viewTable.showList(stp.getTeachers(), "List of Teachers: ");
+			viewTable.showList(stp.getTeachers(), "Teachers: ");
 		} else if (view.LISTDEGREES.equals(op)) {
-			viewTable.showList(stp.getDegrees(), "List of Grades: ");
-		} else if (view.LISTSUBJECTS.equals(op)) {
-			viewTable.showList(stp.getSubjects(), "List of classes: ");
+			viewTable.showList(stp.getDegrees(), "Grades: ");
+		} else if (view.LISTSUBJECTS.equals(op)) {   
+			viewTable.showList(stp.getSubjects(), "lasses: ");
 		} else if (view.LISTISSUEDGRADES.equals(op)) {
 			viewTable.showListIssuedGrades("List of given grades:");
 		} else if (view.ISSUINGGRADES.equals(op)) {
@@ -150,7 +150,7 @@ System.out.println("Adding grades to the Database");
 	}
 
 	private void table_foreign_key_constraint_check_or_throw_exception(int id, TableStructure table) throws Exception {
-		SimpleQuery sq = new SimpleQuery(table.getTableName(), String.format(" %s = %d", table.getIdColumnName(), id));
+		Query sq = new Query(table.getTableName(), String.format(" %s = %d", table.getIdColumnName(), id));
 		if (!sq.anyRowExists()) {
 			throw new DBConstraintViolation(table.getTableName(), id);
 		}

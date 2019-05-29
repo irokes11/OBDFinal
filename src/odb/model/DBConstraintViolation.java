@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 public class DBConstraintViolation extends Exception {
 	

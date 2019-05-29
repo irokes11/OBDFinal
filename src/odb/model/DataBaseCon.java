@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -58,8 +58,8 @@ public class DataBaseCon {
 		return connection.createStatement();
 	}
 
-	public static SimpleQuery simpleQuery(String tableName, String where) {
-		return new SimpleQuery(tableName, where);
+	public static Query Query(String tableName, String where) {
+		return new Query(tableName, where);
 	}
 
 }

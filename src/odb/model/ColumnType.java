@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 import java.util.function.Function;
 
@@ -16,12 +16,6 @@ public class ColumnType {
 		this.precision = precision;
 	}
 	
-	public ColumnType(Type type, int length) {		
-		this.type = type;
-		this.length = length;
-		this.precision = 0;
-	}
-	
 	public ColumnType(Type type) {		
 		this.type = type;
 		this.length = 0;
@@ -32,6 +26,11 @@ public class ColumnType {
 		return type;
 	}
 	
+	public ColumnType(Type type, int length) {		
+		this.type = type;
+		this.length = length;
+		this.precision = 0;
+	}
 	public int getLength() {
 		return length;
 	}

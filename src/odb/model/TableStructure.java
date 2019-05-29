@@ -1,4 +1,4 @@
-package odb.database;
+package odb.model;
 
 import java.util.ArrayList;
 import java.util.List;
