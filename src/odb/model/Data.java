@@ -57,7 +57,7 @@ public class Data {
 			SQL.append(colVals);
 			SQL.append(")");
 
-//			System.out.println(insertDML);
+//		
 			DataBaseCon db = DataBaseCon.getInstance();
 			Statement stat = db.getStatement();			
 		    stat.executeUpdate(SQL.toString());

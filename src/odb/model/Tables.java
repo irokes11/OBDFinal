@@ -61,7 +61,7 @@ public class Tables {
 			isFirst = false;
 		}
 		sb.append(")");
-//		System.out.println(sb.toString());
+
 		statement.execute(sb.toString());
 
 	}

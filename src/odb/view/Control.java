@@ -87,12 +87,12 @@ public class Control {
 		String degree = Degree();
 		if ("S".equalsIgnoreCase(degree) || "C".equalsIgnoreCase(degree)) {
 			try {
-				System.out.println();				
+							
 				addGradeToDB(idu, idn, ido, idp, degree);
 				System.out.println("Evaluation mark has been saved in the system");
 			} catch (SQLViolation e) {
-				System.out.println(e.getMessage());
-				throw e;
+			//	System.out.println(e.getMessage()); //this created unnecessary null when violoation came up
+				//throw e;
 			}
 		} else {
 			System.out.println("Incorrect type of mark. Evaluation finished, try again ");

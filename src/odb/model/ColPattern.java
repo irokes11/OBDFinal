@@ -63,9 +63,9 @@ public class ColPattern {
 		return isNullable;
 	}
 
-	public void setNullable(boolean isNullable) {
-		this.isNullable = isNullable;
-	}
+//	public void setNullable(boolean isNullable) {
+//		this.isNullable = isNullable;
+//	}
 		
 	
 }

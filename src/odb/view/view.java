@@ -42,7 +42,7 @@ public class view {
 
 	public static String selectOperation() {
 		String op;
-		System.out.println();
+		
 		System.out.println("Insert your command: ");
 		do {			
 			String operation = scn.nextLine();
