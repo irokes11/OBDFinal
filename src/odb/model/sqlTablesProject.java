@@ -46,13 +46,13 @@ public class sqlTablesProject {
 
 	public void createData(boolean dropAllTablesBefore, boolean insertData)
 			throws SQLException, ClassNotFoundException {
-		TablesCreator tCreator = new TablesCreator(subjects, teachers, students, degrees, issuingGrades);
+		Tables table = new Tables(subjects, teachers, students, degrees, issuingGrades);
 
 		if (dropAllTablesBefore) {
-			tCreator.dropAllIfExists();
+			table.dropAllIfExists();
 		}
 
-		tCreator.createAllIfNotExists(x -> {
+		table.createAllIfNotExists(x -> {
 			if (insertData) {
 				try {
 					insertData(x);
@@ -112,40 +112,19 @@ public class sqlTablesProject {
 	private void insertDegrees(TableStructure table) throws ClassNotFoundException, SQLException {
 		//String sql1 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES (1,'jedynka',1)";
 		Data.insert(degrees).values(1,"jedynka",1);
-	//	Data.insert(degrees).values(2,"jeden +",1,5);
+		Data.insert(degrees).values(2,"jeden +",1,5);
 		Data.insert(degrees).values(3,"dwa",2);
-	//	Data.insert(degrees).values(4,"dwa +",2.5);
+		Data.insert(degrees).values(4,"dwa +",2.5);
 		Data.insert(degrees).values(5,"trzy",3);
-	//	Data.insert(degrees).values(6,"trzy +",3.5);
+		Data.insert(degrees).values(6,"trzy +",3.5);
 		Data.insert(degrees).values(7,"cztery",4);
-	//  Data.insert(degrees).values(8,"cztery +",4.5);
+	  Data.insert(degrees).values(8,"cztery +",4.5);
 		Data.insert(degrees).values(9,"piec",5);
-	//	Data.insert(degrees).values(10,"piec +",5.5);
+		Data.insert(degrees).values(10,"piec +",5.5);
 		Data.insert(degrees).values(11,"szesc",6);
 	}
 
 
-	private String getDegree(Double degree) {
-		if (degree == 1.5) { 
-			return "jedynka +";
-		}
-		if (degree == 1.75) {
-			return "dwa -";
-		}
-		if (degree == 2) {
-			return "dwa";
-		}
-		if (degree == 3) {
-			return "trzy";
-		}
-		if (degree == 4) {
-			return "cztery";
-		}
-		if (degree == 5) {
-			return "piec";
-		}
-		return "";
-	}
 
 	public TableStructure getSubjects() {
 		return subjects;

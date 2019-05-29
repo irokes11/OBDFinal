@@ -2,17 +2,18 @@ package odb.model;
 
 import java.util.function.Function;
 
-public enum Type {
-	INT("integer", x -> "'"+String.valueOf(x)+"'" ),
+public enum ItemType {
 	CHAR("char", x -> "'"+x+"'" ),
-	NUMERIC("numeric", x -> "'"+dotToComma(String.valueOf(x))+"'" ),
-	FLOAT("float", x -> "'"+dotToComma(String.valueOf(x))+"'" ),
-	TEXT("varchar2", x -> "'"+x+"'" );
+	INT("integer",x -> "'"+String.valueOf(x)+"'" ),
+	NUMERIC("numeric", x -> "'"+(String.valueOf(x))+"'" ),
+	TEXT("varchar2", x -> "'"+x+"'" ),
+	FLOAT("float", x -> "'"+(String.valueOf(x))+"'" );
+
 	
 	private String desc; 
 	private Function<Object, String> mapValToStringFunction;
 	
-	Type(String desc, Function<Object, String> mapValToStringFunction) {
+	ItemType(String desc, Function<Object, String> mapValToStringFunction) {
 		this.desc = desc;
 		this.mapValToStringFunction = mapValToStringFunction;
 	}
@@ -27,10 +28,6 @@ public enum Type {
 
 	public String getDesc() {
 		return desc;
-	}
-	
-	private static String dotToComma(String val) {
-		return val.replace('.',',');
 	}
 	
 	

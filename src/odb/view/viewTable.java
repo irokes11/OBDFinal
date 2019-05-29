@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import odb.model.DataBaseCon;
+import odb.model.ItemType;
 import odb.model.TableStructure;
-import odb.model.Type;
+
 
 public class viewTable {
 
@@ -49,7 +49,7 @@ public class viewTable {
 		sb.append(idColumnName + " AS ID");
 		table.getColumns().stream().forEach(column -> {
 			if (!column.isId()) {
-				if (column.getColumnType().getTypeName() == Type.FLOAT) {
+				if (column.getColumnType().getTypeName() == ItemType.FLOAT) {
 					sb.append(", to_char(" + column.getColumnName() + ") AS F_" + column.getColumnName());
 				} else {
 					sb.append(", " + column.getColumnName());

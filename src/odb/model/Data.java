@@ -28,7 +28,7 @@ public class Data {
 			StringBuilder colVals = new StringBuilder();
 			String valId = "";
 			String colNameId = "";
-			for (ColumnPattern col : def.getColumns()) {
+			for (ColPattern col : def.getColumns()) {
 				if (colIndex > 0) {
 					colNames.append(", ");
 					colVals.append(", ");
@@ -44,28 +44,28 @@ public class Data {
 
 			}
 
-			if (checkIdExists && idExists(def.getTableName(), colNameId, valId)) {
+			if (checkIdExists && id(def.getTableName(), colNameId, valId)) {
 
 				return;
 			}
 
-			StringBuilder insertSQL = new StringBuilder();
+			StringBuilder SQL = new StringBuilder();
 
-			insertSQL.append("INSERT INTO " + def.getTableName() + " (");
-			insertSQL.append(colNames);
-			insertSQL.append(") VALUES (");
-			insertSQL.append(colVals);
-			insertSQL.append(")");
+			SQL.append("INSERT INTO " + def.getTableName() + " (");
+			SQL.append(colNames);
+			SQL.append(") VALUES (");
+			SQL.append(colVals);
+			SQL.append(")");
 
 //			System.out.println(insertDML);
 			DataBaseCon db = DataBaseCon.getInstance();
 			Statement stat = db.getStatement();			
-		    stat.executeUpdate(insertSQL.toString());
+		    stat.executeUpdate(SQL.toString());
 			return;
 		
 		}
 
-		private boolean idExists(String tableName, String colNameId, String val) throws ClassNotFoundException, SQLException {
+		private boolean id(String tableName, String colNameId, String val) throws ClassNotFoundException, SQLException {
 			String where = colNameId + " = " + val;
 			Query sq = new Query(tableName, where);
 			return sq.anyRowExists();

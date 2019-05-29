@@ -6,15 +6,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class TablesCreator {
+public class Tables {
 
 	List<TableStructure> tables;
 
-	public TablesCreator(TableStructure... tables) {
+	public Tables(TableStructure... tables) {
 		this.tables = Arrays.asList(tables);
 	}
 	
-	public TablesCreator(List<TableStructure> tables) {
+	public Tables(List<TableStructure> tables) {
 		this.tables = tables;
 	}
 	
@@ -48,7 +48,7 @@ public class TablesCreator {
 		sb.append(table.getTableName());
 		sb.append("(");
 		boolean isFirst = true;
-		for(ColumnPattern col : table.getColumns()) {
+		for(ColPattern col : table.getColumns()) {
 			sb.append("\n");
 			if (!isFirst) {
 				sb.append(", ");

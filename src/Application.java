@@ -1,9 +1,8 @@
 import java.sql.SQLException;
 import java.sql.SQLRecoverableException;
 import java.util.InputMismatchException;
-
 import odb.view.viewTable;
-import odb.model.DBConstraintViolation;
+import odb.model.SQLViolation;
 import odb.model.Data;
 import odb.model.DataBaseCon;
 import odb.model.Query;
@@ -50,10 +49,10 @@ public class Application {
 	private void addGradeToDB(int idu, int idn, int ido, int idp, String degree) throws Exception {
 		sqlTablesProject stp = sqlTablesProject.Instance();
 
-		table_foreign_key_constraint_check_or_throw_exception(idu, stp.getStudents());
-		table_foreign_key_constraint_check_or_throw_exception(idn, stp.getTeachers());
-		table_foreign_key_constraint_check_or_throw_exception(ido, stp.getDegrees());
-		table_foreign_key_constraint_check_or_throw_exception(idp, stp.getSubjects());
+		violation(idu, stp.getStudents());
+		violation(idn, stp.getTeachers());
+		violation(ido, stp.getDegrees());
+		violation(idp, stp.getSubjects());
 		InsertEngine ie = new Data.InsertEngine(stp.getIssuingGrades(), false);
 System.out.println("Adding grades to the Database");
 		ie.values(idp, ido, idn, idu, degree);
@@ -79,7 +78,7 @@ System.out.println("Adding grades to the Database");
 			if (activation != null) {
 				try {
 					run2(activation);
-				} catch (DBConstraintViolation e) {
+				} catch (SQLViolation e) {
 				} catch (InputMismatchException e) {
 					System.out.println(" Incorrect ID number. Please try again.");
 					view.resetScanner();
@@ -98,6 +97,7 @@ System.out.println("Adding grades to the Database");
 			viewTable.showList(stp.getStudents(), "Students: ");
 		} else if (view.LISTTEACHERS.equals(op)) {
 			viewTable.showList(stp.getTeachers(), "Teachers: ");
+			
 		} else if (view.LISTDEGREES.equals(op)) {
 			viewTable.showList(stp.getDegrees(), "Grades: ");
 		} else if (view.LISTSUBJECTS.equals(op)) {   
@@ -115,10 +115,10 @@ System.out.println("Adding grades to the Database");
 	private void createGrades() throws Exception {
 		System.out.println("Enter proper IDs for student evaluation: ");
 
-		int idu = Id("ucznia");
-		int idn = Id("nauczyciela");
-		int ido = Id("oceny");
-		int idp = Id("przedmiotu");
+		int idu = Id(" of Student");
+		int idn = Id(" of Teacher");
+		int ido = Id(" of Grade");
+		int idp = Id("of Class");
 		view.resetScanner();
 		String degree = Degree();
 		if ("S".equalsIgnoreCase(degree) || "C".equalsIgnoreCase(degree)) {
@@ -126,7 +126,7 @@ System.out.println("Adding grades to the Database");
 				System.out.println();				
 				addGradeToDB(idu, idn, ido, idp, degree);
 				System.out.println("Evaluation mark has been saved in the system");
-			} catch (DBConstraintViolation e) {
+			} catch (SQLViolation e) {
 				System.out.println(e.getMessage());
 				throw e;
 			}
@@ -149,10 +149,10 @@ System.out.println("Adding grades to the Database");
 		return id;
 	}
 
-	private void table_foreign_key_constraint_check_or_throw_exception(int id, TableStructure table) throws Exception {
+	private void violation(int id, TableStructure table) throws Exception {
 		Query sq = new Query(table.getTableName(), String.format(" %s = %d", table.getIdColumnName(), id));
 		if (!sq.anyRowExists()) {
-			throw new DBConstraintViolation(table.getTableName(), id);
+			throw new SQLViolation(table.getTableName(), id);
 		}
 	}
 
