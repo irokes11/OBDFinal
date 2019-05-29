@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-public class sqlTablesProject {
+public class SQLTablesProject {
 
 	public static final String STUDENTS = "Uczen";
 	public static final String DEGREES = "Ocena";
@@ -18,9 +18,9 @@ public class sqlTablesProject {
 	private TableStructure degrees;
 	private TableStructure issuingGrades;
 
-	private static sqlTablesProject instance = null;
+	private static SQLTablesProject instance = null;
 
-	private sqlTablesProject() {   // Allocating proper items into the columns in sequence
+	private SQLTablesProject() {   // Allocating proper items into the columns in sequence
 		subjects = new TableStructure(SUBJECT).addIdColumn("idp").addCharCol("nazwa", 20);
 
 		teachers = new TableStructure(TEACHER).addIdColumn("idn").addCharCol("nazwisko", 30)
@@ -37,9 +37,9 @@ public class sqlTablesProject {
 
 	}
 
-	public static sqlTablesProject Instance() {
+	public static SQLTablesProject Instance() {
 		if (instance == null) {
-			instance = new sqlTablesProject();
+			instance = new SQLTablesProject();
 		}
 		return instance;
 	}
