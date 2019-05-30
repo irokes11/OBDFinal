@@ -46,6 +46,7 @@ public class TypeOfColumn {
 		case TEXT: return typeName+"("+length+")";		 
 		case FLOAT:
 		case INT: return typeName; 
+		case DOUBLE: 
 		case NUMERIC :return typeName+"("+length+","+precision+")";
 		}
 		return "";
@@ -54,6 +55,7 @@ public class TypeOfColumn {
 	
 	public static TypeOfColumn intColumn() { return new TypeOfColumn(ItemType.INT); }
 	public static TypeOfColumn floatColumn() { return new TypeOfColumn(ItemType.FLOAT); }
+	public static TypeOfColumn doubleColumn() { return new TypeOfColumn(ItemType.DOUBLE); }
 	public static TypeOfColumn textColumn(int maxLength) { return new TypeOfColumn(ItemType.TEXT, maxLength); }
 	public static TypeOfColumn charsColumn(int fixedLength) { return new TypeOfColumn(ItemType.CHAR, fixedLength); }
 	public static TypeOfColumn numericColumn(int length, int precision) { return new TypeOfColumn(ItemType.NUMERIC, length, precision); }

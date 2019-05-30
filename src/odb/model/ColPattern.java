@@ -43,6 +43,10 @@ public class ColPattern {
 		  return new ColPattern(name, TypeOfColumn.floatColumn(), false);
 	}
 
+	public static ColPattern createDouble(String name) {
+		  return new ColPattern(name, TypeOfColumn.doubleColumn(), false);
+	}
+	
 	public String getColumnName() {
 		return columnName;
 	}

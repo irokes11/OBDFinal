@@ -37,9 +37,12 @@ public class TableStructure {
 	
 	public TableStructure addFloatColumn(String columnName, int length, int precision) {
 		columns.add(ColPattern.createFloat(columnName) );
-	
-	
-		return this;
+	return this;
+
+	}
+	public TableStructure addDoubleColumn(String columnName, int length, int precision) {
+		columns.add(ColPattern.createDouble(columnName) );
+	return this;
 
 	}
 	

@@ -7,8 +7,8 @@ public enum ItemType {
 	INT("integer",x -> "'"+String.valueOf(x)+"'" ),
 	NUMERIC("numeric", x -> "'"+(String.valueOf(x))+"'" ),
 	TEXT("varchar2", x -> "'"+x+"'" ),
+	DOUBLE("double", x -> "'"+x+"'" ),
 	FLOAT("float", x -> "'"+(String.valueOf(x))+"'" );
-
 	
 	private String desc; 
 	private Function<Object, String> mapValToStringFunction;
