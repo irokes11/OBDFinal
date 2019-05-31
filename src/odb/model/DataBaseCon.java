@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import odb.view.Control;
+
 public class DataBaseCon {
 
 	private static final String JDB_DRIVER  = "oracle.jdbc.driver.OracleDriver";
@@ -36,7 +38,7 @@ public class DataBaseCon {
 
 	public void open() throws SQLException {		
 		connection = DriverManager.getConnection(DB_URL , USER, PASS);
-
+		
 	}
 
 	public void close() {

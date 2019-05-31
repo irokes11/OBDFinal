@@ -11,6 +11,7 @@ import odb.model.SQLViolation;
 import odb.model.TableStructure;
 import odb.model.SQLTablesProject;
 import odb.model.Data.InsertEngine;
+import odb.model.DataBaseCon;
 
 public class Control {
 	private static void addGradeToDB(int idu, int idn, int ido, int idp, String degree) throws Exception {
@@ -127,9 +128,9 @@ public class Control {
 	
 			try {
 				
-				String url = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
-				String user = "iseredyn";
-				String password = "iseredyn";
+			//	String url = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
+			//	String user = "iseredyn";
+			//	String password = "iseredyn";
 				
 				
 				String sql1 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES('2','jeden +',1.5)";  //wstawianie danych  inna skladnia niz w v4
@@ -138,15 +139,23 @@ public class Control {
 				String sql4 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES('8','cztery +',4.5)";
 				String sql5 = "INSERT INTO OCENA (IDO,WARTOSC_OPISOWA,WARTOSC_NUMERYCZNA) VALUES('10','pec +',5.5)";
 				
-				Connection connection = DriverManager.getConnection(url,user,password);
+				//Connection connection = DriverManager.getConnection(url,user,password);
 				//System.out.println("AutoCommit: "+connection.getAutoCommit()+ " "+connection.hashCode());
-				Statement polecenie = connection.createStatement();	
-				System.out.println(polecenie.executeUpdate(sql1));
-				System.out.println(polecenie.executeUpdate(sql2));
-				System.out.println(polecenie.executeUpdate(sql3));
-				System.out.println(polecenie.executeUpdate(sql4));
-				System.out.println(polecenie.executeUpdate(sql5));
+			//	Statement polecenie = connection.createStatement();	
 				
+				
+				System.out.println(DataBaseCon.getInstance().getStatement().executeUpdate(sql1));
+				System.out.println(DataBaseCon.getInstance().getStatement().executeUpdate(sql2));
+				System.out.println(DataBaseCon.getInstance().getStatement().executeUpdate(sql3));
+				System.out.println(DataBaseCon.getInstance().getStatement().executeUpdate(sql4));
+				System.out.println(DataBaseCon.getInstance().getStatement().executeUpdate(sql5));
+				
+				
+			//	System.out.println(polecenie.executeUpdate(sql2));
+			//	System.out.println(polecenie.executeUpdate(sql3));
+			//	System.out.println(polecenie.executeUpdate(sql4));
+			//	System.out.println(polecenie.executeUpdate(sql5));
+			//	connection.close();
 		
 				
 				
