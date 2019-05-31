@@ -20,7 +20,9 @@ public class Application {
 				db.open();
 				System.out.println("Connection successfull");
 				Control.loadData();
+				//Control.insertSQL();
 				Control.run1();
+				
 			} else {
 				System.out.print("Connection failed");
 				return;

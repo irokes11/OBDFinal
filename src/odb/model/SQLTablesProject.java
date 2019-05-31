@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import odb.view.Control;
+
 public class SQLTablesProject {
 
 	public static final String STUDENTS = "Uczen";
@@ -123,6 +125,7 @@ public class SQLTablesProject {
 		Data.insert(degrees).values(9,"piec",5);
 		//Data.insert(degrees).values(10,"piec +",5.5);
 		Data.insert(degrees).values(11,"szesc",6);
+		Control.insertSQL();
 	}
 
 
